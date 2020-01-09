@@ -12,9 +12,9 @@ const ORM = new sequelize(
   sequelizeConfig
 );
 
-db.User = ORM.import(path.join(__dirname, 'user.js'));
-db.Post = ORM.import(path.join(__dirname, 'post.js'));
-db.Comment = ORM.import(path.join(__dirname, 'comment.js'));
+db.Action = ORM.import(path.join(__dirname, 'action.js'));
+db.LifeSituation = ORM.import(path.join(__dirname, 'life_situation.js'));
+db.PaymentType = ORM.import(path.join(__dirname, 'payment_type.js'));
 
 Object.keys(db).forEach(modelName => {
   if (db[modelName].associate) {

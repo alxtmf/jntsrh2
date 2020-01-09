@@ -13,7 +13,7 @@ import setupApi from './api';
 import enforceSSL from './common/enforce-ssl';
 
 import queries from './api/controllers/queries';
-import { User, Comment, Post } from './api/models';
+import { Action, LifeSituation, PaymentType} from './api/models';
 
 const dev = process.env.NODE_ENV !== 'production';
 const port = parseInt(process.env.PORT, 10) || 8000;
@@ -43,31 +43,25 @@ app.prepare().then(() => {
   setupApi(server);
 
   server.get('/post/:id', async (req, res) => {
-    const users = await User.findAll(
-      queries.users.list({ req, User, Post, Comment })
-    );
-    const posts = await Post.findAll(
-      queries.posts.list({ User, Post, Comment })
-    );
-    const comments = await Comment.findAll(
-      queries.comments.list({ User, Post, Comment })
-    );
-    const params = { id: req.params.id, users, comments, posts };
-
-    return app.render(req, res, '/post', params);
+    // const users = await User.findAll(
+    //   queries.users.list({ req, User, Post, Comment })
+    // );
+    // const posts = await Post.findAll(
+    //   queries.posts.list({ User, Post, Comment })
+    // );
+    // const comments = await Comment.findAll(
+    //   queries.comments.list({ User, Post, Comment })
+    // );
+    // const params = { id: req.params.id, users, comments, posts };
+    //
+    // return app.render(req, res, '/post', params);
   });
 
   server.get('*', async (req, res) => {
-    const users = await User.findAll(
-      queries.users.list({ req, User, Post, Comment })
-    );
-    const posts = await Post.findAll(
-      queries.posts.list({ User, Post, Comment })
-    );
-    const comments = await Comment.findAll(
-      queries.comments.list({ User, Post, Comment })
-    );
-    const params = { users, comments, posts };
+    const actions = await Action.findAll();
+    const lifeSytuations = await LifeSituation.findAll();
+    const paymentTypes = await PaymentType.findAll();
+    const params = { actions, lifeSytuations, paymentTypes };
 
     return app.render(req, res, req.url, params);
   });

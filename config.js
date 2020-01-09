@@ -6,22 +6,40 @@ const Sequelize = require('sequelize');
 
 module.exports = {
   development: {
-    username: 'test',
-    password: 'test',
-    database: 'sampledb',
-    host: '127.0.0.1',
+    username: 'pfgbiiflnjmrpq',
+    password: '8fc93e9bbe304041abfeb8f3c700ebcf3785d79ef807a81e833bafe5c37f828f',
+    database: 'd3idjrep5lgevm',
+    host: 'ec2-50-17-246-114.compute-1.amazonaws.com',
     port: 5432,
     dialect: 'postgres',
+    dialectOptions: {
+          ssl: true,
+    },
+    define: {
+          defaultScope: {
+              attributes: {
+                  exclude: ["createdAt", "updatedAt"]
+              }
+          }
+    },
+
   },
   production: {
-    username: process.env.PRODUCTION_USERNAME,
-    password: process.env.PRODUCTION_PASSWORD,
-    database: process.env.PRODUCTION_DATABASE,
-    host: process.env.PRODUCTION_HOST,
-    port: process.env.PRODUCTION_PORT,
+    username: 'pfgbiiflnjmrpq',
+    password: '8fc93e9bbe304041abfeb8f3c700ebcf3785d79ef807a81e833bafe5c37f828f',
+    database: 'd3idjrep5lgevm',
+    host: 'ec2-50-17-246-114.compute-1.amazonaws.com',
+    port: 5432,
     dialect: 'postgres',
     dialectOptions: {
       ssl: true,
+    },
+    define: {
+       defaultScope: {
+         attributes: {
+           exclude: ["createdAt", "updatedAt"]
+         }
+       }
     },
   },
   session: {

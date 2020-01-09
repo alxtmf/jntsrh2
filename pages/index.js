@@ -9,6 +9,10 @@ import NavPublic from '../components/NavPublic';
 import PostList from '../components/PostList';
 import NavAuthenticated from '../components/NavAuthenticated';
 import withData from '../higher-order/withData';
+import * as Utils from '../common/utils';
+import DropdownTreeSelect from 'react-dropdown-tree-select';
+import {Action} from "../api/models";
+import {actions} from "../static/action"
 
 class Index extends React.Component {
   renderLoggedIn = () => {
@@ -19,17 +23,17 @@ class Index extends React.Component {
       </ColumnLayout>,
     ];
   };
-
+//Utils.listToTree(this.props.actions)
   renderLoggedOut = () => {
     return [
+      <DropdownTreeSelect
+          data={actions}
+      />,
       <NavPublic key="navigation" />,
       <ColumnLayout key="layout">
         <Text.PageTitle>next-postgres</Text.PageTitle>
         <Text.Paragraph>
-          This project is an example of React + NextJS + Postgres. It is
-          tailored for those who are enthusiastic about building websites with
-          100% JavaScript. It is designed in a way that makes you want to change
-          it and very easy to change. <br />
+            this.props <br />
           <br />
           <Text.Anchor
             target="blank"
